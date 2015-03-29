@@ -1,7 +1,8 @@
 
 command: "uptime"
 
-refreshFrequency: 60 * 1000
+# reduce the refresh frequency to minimise delay in the update (when the refresh doesn't occur at exactly the same moment)
+refreshFrequency: 30 * 1000
 
 # Set to true if you want to always see days, hours and minutes
 # Set to false if you don't want to see the parts that are zero
@@ -87,9 +88,13 @@ calcUptime: (output) ->
       hours = 0
       minutes = time[1]
     else
-      time = uptime[1].split(":")
-      hours = time[0]
-      minutes = time[1]
+      if uptime[1].indexOf('sec') > -1
+        hours = 0
+        minutes = 0
+      else
+        time = uptime[1].split(":")
+        hours = time[0]
+        minutes = time[1]
 
   # return      
   days: days
