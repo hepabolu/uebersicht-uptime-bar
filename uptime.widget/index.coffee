@@ -1,7 +1,7 @@
 
 command: "uptime"
 
-refreshFrequency: 60
+refreshFrequency: 60 * 1000
 
 # Set to true if you want to always see days, hours and minutes
 # Set to false if you don't want to see the parts that are zero
